@@ -73,7 +73,7 @@ setTimeout("location.reload(true);", t);
 	<!--end of body-->	
  	
 	
-</div>	<!--/.main-->
+</div>	<!--Work on those data tables-->
 	
 	 
 	<script src="js/bootstrap.min.js"></script>
