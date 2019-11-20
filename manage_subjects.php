@@ -48,7 +48,7 @@
 
 
                                               // Loop through the array of user data, formatting it as HTML 
-                                                        echo '<h6><table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                        echo '<h6><table width="100%" class="table table-striped table-bordered table-hover" id="subjectsList">
                                                         <thead>
                                                             <tr>
                                                                 <th>Subject Name</th>
@@ -80,7 +80,7 @@
                                               }
                           
                                              }
-                                              echo '</thead> </table>';
+                                              echo '</tbody> </table>';
 
                                               mysqli_close($dbc);
                   ?> 				
@@ -88,6 +88,13 @@
 		  </div>
 		</div>
     </div>
+    <script type="text/javascript">     
+    $(document).ready(function () 
+    {
+    $('#subjectsList').DataTable();
+    } 
+    );
+    </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

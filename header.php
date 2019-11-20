@@ -11,15 +11,57 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
     <link href="test.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/icon" href="">
-	<link href="css/font-awesome.min.css" rel="stylesheet">
-	<link href="css/datepicker3.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="datatables/DataTables-1.10.18/css/jquery.dataTables.css"/>
-	<script type="text/javascript" src="datatables/jQuery-3.3.1/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="datatables/DataTables-1.10.18/js/jquery.dataTables.js"></script>
+	<!-- Datatable CSS -->
+    <link href='DataTables/datatables.min.css' rel='stylesheet' type='text/css'>
+
+     <!-- jQuery Library -->
+     <script src="jquery-3.3.1.min.js"></script>
+        
+     <!-- Datatable JS -->
+     <script src="DataTables/datatables.min.js"></script>
 
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+	<!--Styles for the collapsibles-->
+
+	                 <style>
+					.collapsible {
+					  background-color: green;
+					  color: white;
+					  cursor: pointer;
+					  padding: 18px;
+					  width: 100%;
+					  border: none;
+					  text-align: left;
+					  outline: none;
+					  font-size: 13px;
+					}
+
+					.active, .collapsible:hover {
+					  background-color: gray;
+					}
+
+					.content {
+					  padding: 0 18px;
+					  max-height: 0;
+					  overflow: hidden;
+					  transition: max-height 0.2s ease-out;
+					  background-color: white;
+					}
+
+					.collapsible:after {
+					  content: '\02795'; /* Unicode character for "plus" sign (+) */
+					  font-size: 13px;
+					  color: white;
+					  float: right;
+					  margin-left: 5px;
+					}
+
+					.active:after {
+					  content: "\2796"; /* Unicode character for "minus" sign (-) */
+					}
+					</style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

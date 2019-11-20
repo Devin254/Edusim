@@ -23,15 +23,23 @@
 		  	</div>
 
 		  	<div class="content-box-large">
-				<div class="panel-body">				
+				<div class="panel-body">
+				<h6>
+				
+										                                </h6>	
+
 		  	</div>				
 		  </div>
 		</div>
     </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
+    <script type="text/javascript">     
+    $(document).ready(function () 
+    {
+    $('#dtexample').DataTable();
+    } 
+    );
+    </script>
   </body>
 </html>

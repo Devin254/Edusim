@@ -26,6 +26,7 @@
                         <div class="panel-title ">
                             <h6><b>EXAM LISTINGS</b></h6> 
                         </div>
+                      
                     </div>              
                 </div>
             </div>
@@ -66,7 +67,7 @@
                       echo '<td>' . $row['exam_name'] . '</td>';
                       echo '<td>' . $row['duration'] . '</td>';
                       echo '<td>' . $row['grade_level'] . '</td>';                    
-                      echo '<td class="center"><a href=""><b class="text-info">QUESTIONS</b><b>&emsp;</b></a> <a href="edit_exam.php?exam_id=' . $row['exam_id'] . '&amp;category_id=' . $row['category_id'] . '&amp;subject_id=' . $row['subject_id'] . '&amp;exam_name=' . $row['exam_name'] . '&amp;duration=' . $row['duration'] . '&amp;grade_level=' . $row['grade_level'] . '&amp;exam_status=' . $row['exam_status'] .  '"><b class="text-success"> EDIT</b></a><b>&emsp;</b>';
+                      echo '<td class="center"><a href="manage_questions.php?exam_id=' . $row['exam_id'] . '&amp;exam_name=' . $row['exam_name'] . '"><b class="text-info">QUESTIONS</b><b>&emsp;</b></a> <a href="edit_exam.php?exam_id=' . $row['exam_id'] . '&amp;category_id=' . $row['category_id'] . '&amp;subject_id=' . $row['subject_id'] . '&amp;exam_name=' . $row['exam_name'] . '&amp;duration=' . $row['duration'] . '&amp;grade_level=' . $row['grade_level'] . '&amp;exam_status=' . $row['exam_status'] .  '"><b class="text-success"> EDIT</b></a><b>&emsp;</b>';
                       echo '<b><a href="remove_exam.php?exam_id=' . $row['exam_id'] . '&amp;category_id=' . $row['category_id'] . '&amp;subject_id=' . $row['subject_id'] . '&amp;exam_name=' . $row['exam_name'] . '&amp;duration=' . $row['duration'] . '&amp;grade_level=' . $row['grade_level'] . '&amp;exam_status=' . $row['exam_status'] .  '"><b class="text-warning"> DELETE</b></a></td>';
 
                       $cat = $row['exam_status']; 
