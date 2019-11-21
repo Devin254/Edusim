@@ -94,7 +94,7 @@
 				<div class="panel-body">
 					        <h6>
                     <p>Questions Listing:</p>
-                    <button class="collapsible">Open Question</button>
+                    <button class="collapsible">Open Question 1</button>
                     <div class="content">
                       <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                     <thead>
@@ -133,7 +133,7 @@
                                                 </table>
                                                   
                     </div>
-                    <button class="collapsible">Open Question</button>
+                    <button class="collapsible">Open Question 2</button>
                     <div class="content">
                       <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                     <thead>
@@ -171,7 +171,7 @@
                                                   </tbody>
                                                 </table>
                     </div>
-                    <button class="collapsible">Open Question</button>
+                    <button class="collapsible">Open Question 3</button>
                     <div class="content">
                       <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                     <thead>
