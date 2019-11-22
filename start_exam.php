@@ -97,7 +97,7 @@
 	            </tr>
 	            <tr class="odd gradeX">
 	            <td><b>Action</b></td>
-	            <td><input style="color: white; font-weight: bold; text-align: center;" type="submit" value="START THIS EXAM" class="btn btn-success" name="submit" /></td>
+	            <td><a href="exams_start.php"><b class="text-info" style="font-size: 15px; text-align: center;">BEGIN THIS EXAM</b><b>&emsp;</b></a></td>
 	            </tr>	
 	            </tbody>
 	            </table>

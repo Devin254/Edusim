@@ -91,124 +91,81 @@
 
                     }
           ?>
-				<div class="panel-body">
+				        <div class="panel-body">
 					        <h6>
                     <p>Questions Listing:</p>
-                    <button class="collapsible">Open Question 1</button>
-                    <div class="content">
-                      <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>QUESTION</th>
-                                                            <td>Edit 
-                                                            </td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>                 
-                                                    <tr>
-                                                      <td>Question</td>
-                                                      <td>Who is the president of Kenya</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Choice A</td>
-                                                      <td>Uhuru Kenyatta</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Choice B</td>
-                                                      <td>Jomo Kenyatta</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Choice C</td>
-                                                      <td>Raila Odinga</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Choice D</td>
-                                                      <td>None of the above</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Answer</td>
-                                                      <td>Choice D</td>
-                                                    </tr>
-                                                  </tbody>
-                                                </table>
-                                                  
-                    </div>
-                    <button class="collapsible">Open Question 2</button>
-                    <div class="content">
-                      <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>QUESTION</th>
-                                                            <td>Edit 
-                                                            </td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>                 
-                                                    <tr>
-                                                      <td>Question</td>
-                                                      <td>Who is the president of Kenya</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Choice A</td>
-                                                      <td>Uhuru Kenyatta</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Choice B</td>
-                                                      <td>Jomo Kenyatta</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Choice C</td>
-                                                      <td>Raila Odinga</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Choice D</td>
-                                                      <td>None of the above</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Answer</td>
-                                                      <td>Choice D</td>
-                                                    </tr>
-                                                  </tbody>
-                                                </table>
-                    </div>
-                    <button class="collapsible">Open Question 3</button>
-                    <div class="content">
-                      <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>QUESTION</th>
-                                                            <td>Edit 
-                                                            </td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>                 
-                                                    <tr>
-                                                      <td>Question</td>
-                                                      <td>Who is the president of Kenya</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Choice A</td>
-                                                      <td>Uhuru Kenyatta</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Choice B</td>
-                                                      <td>Jomo Kenyatta</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Choice C</td>
-                                                      <td>Raila Odinga</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Choice D</td>
-                                                      <td>None of the above</td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Answer</td>
-                                                      <td>Choice D</td>
-                                                    </tr>
-                                                  </tbody>
-                                                </table>
-                    </div>
+                                    <?php
+
+                                    // Retrieve the subject data from MySQL
+                                    $dbc = mysqli_connect('localhost', 'root', '', 'test');
+                                    $query = "SELECT * FROM `questions` WHERE exam_id = '$exam_id' ORDER by sort_order;";
+                                    $data = mysqli_query($dbc, $query)
+                                    or die(mysqli_error());
+                                    if (mysqli_num_rows($data) == 0) 
+                                            {
+                                              echo '<div class="alert alert-warning alert-dismissible" style="size: 30px;">
+                                                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                        <h6><strong><i class="glyphicon glyphicon-ok-danger"></i><strong></strong> THERE ARE NO QUESTIONS AVAILABLE. TRY ADDING THEM</h6>
+                                                                   </div>';
+                                            }
+
+                                    else
+                                    {
+
+                                    // Loop through the array of user data, formatting it as HTML 
+
+                                    while ($row = mysqli_fetch_array($data)) 
+                                    { 
+                                    // Display the subject information
+
+
+                                    echo '<button class="collapsible">Open Question '. $row['sort_order'] .'</button>
+                                                <div class="content">
+                                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>QUESTION</th>
+                                                                    <td><a href="edit_question.php?question_id=' . $row['question_id'] . '&amp;question_text=' . $row['question_text'] . '&amp;sort_order=' . $row['sort_order'] . '&amp;choice_a=' . $row['choice_a'] . '&amp;choice_b=' . $row['choice_b'] . '&amp;choice_c=' . $row['choice_c'] . '&amp;choice_d=' . $row['choice_d'] . '&amp;answer=' . $row['answer'] . '"><b class="text-success"> EDIT</b></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>                 
+                                                            <tr>
+                                                              <td>Question</td>
+                                                              <td>'. $row['question_text'] .'</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Choice A</td>
+                                                              <td>'. $row['choice_a'] .'</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Choice B</td>
+                                                              <td>'. $row['choice_b'] .'</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Choice C</td>
+                                                              <td>'. $row['choice_c'] .'</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Choice D</td>
+                                                              <td>'. $row['choice_d'] .'</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Answer</td>
+                                                              <td>'. $row['answer'] .'</td>
+                                                            </tr>
+                                                          </tbody>
+                                                        </table>
+                                                          
+                                                </div>';
+                                    }
+                                    }
+                                    mysqli_close($dbc);
+                                    ?>
+                  </h6>
+                  </div>
+                                                     
+                   
                     <script>
                     var coll = document.getElementsByClassName("collapsible");
                     var i;
