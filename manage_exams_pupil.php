@@ -38,7 +38,7 @@
                      // Retrieve the subject data from MySQL
                       $dbc = mysqli_connect('localhost', 'root', '', 'test');
                       $user_id = $_SESSION['user_id'];
-                       $query = "SELECT exams. exam_name, exams. duration, exams. grade_level, exams. exam_status, subjects. subject_name, category. category_name, exam_register. user_id FROM exams INNER JOIN category ON category. category_id = exams .category_id INNER JOIN subjects ON subjects. subject_id = exams .subject_id INNER JOIN exam_register ON exam_register. category_id = exams .category_id WHERE exam_register .user_id = '$user_id'";
+                       $query = "SELECT exams. exam_id, exams. exam_name, exams. duration, exams. grade_level, exams. exam_status, subjects. subject_name, category. category_name, exam_register. user_id FROM exams INNER JOIN category ON category. category_id = exams .category_id INNER JOIN subjects ON subjects. subject_id = exams .subject_id INNER JOIN exam_register ON exam_register. category_id = exams .category_id WHERE exam_register .user_id = '$user_id'";
                       $data = mysqli_query($dbc, $query)
                       or die(mysqli_error());
 
@@ -81,7 +81,7 @@
                       
                       if ($cat == 1) 
                       {
-                          echo '<td class="center"><a href="start_exam.php?category_name=' . $row['category_name'] . '&amp;subject_name=' . $row['subject_name'] . '&amp;exam_name=' . $row['exam_name'] . '&amp;duration=' . $row['duration'] . '&amp;grade_level=' . $row['grade_level'] . '&amp;exam_status=' . $row['exam_status'] .  '"><b class="text-success"> START</b></a><b>&emsp;</b></td>';
+                          echo '<td class="center"><a href="start_exam.php?category_name=' . $row['category_name'] . '&amp;subject_name=' . $row['subject_name'] . '&amp;exam_name=' . $row['exam_name'] . '&amp;duration=' . $row['duration'] . '&amp;grade_level=' . $row['grade_level'] . '&amp;exam_status=' . $row['exam_status'] .  '&amp;exam_id=' . $row['exam_id'] . '"><b class="text-success"> START</b></a><b>&emsp;</b></td>';
                           echo '<td class=""><p class="text-success"><i class="glyphicon glyphicon-ok"></i></p></td></tr>';
                           
                           

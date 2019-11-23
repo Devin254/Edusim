@@ -30,7 +30,7 @@
             $tt = mysqli_connect('localhost', 'root', '', 'test');
 
 
-            if (isset($_GET['category_name']) && isset($_GET['subject_name']) && isset($_GET['exam_name']) && isset($_GET['duration']) && isset($_GET['grade_level']) && isset($_GET['exam_status'])) 
+            if (isset($_GET['category_name']) && isset($_GET['subject_name']) && isset($_GET['exam_name']) && isset($_GET['duration']) && isset($_GET['grade_level']) && isset($_GET['exam_status']) && isset($_GET['exam_id'])) 
 
             {
               // Grab the data from the GET
@@ -41,6 +41,7 @@
               $duration = ($_GET['duration']);
               $grade_level = ($_GET['grade_level']);
               $exam_status = ($_GET['exam_status']);
+              $exam_id = ($_GET['exam_id']);
 
             
             
@@ -97,7 +98,9 @@
 	            </tr>
 	            <tr class="odd gradeX">
 	            <td><b>Action</b></td>
-	            <td><a href="exams_start.php"><b class="text-info" style="font-size: 15px; text-align: center;">BEGIN THIS EXAM</b><b>&emsp;</b></a></td>
+	            <td><a href="exams_start.php?exam_id=' . $exam_id . '"><b class="text-info" style="font-size: 15px; text-align: center;">BEGIN THIS EXAM</b><b>&emsp;</b></a></td>
+	           
+
 	            </tr>	
 	            </tbody>
 	            </table>

@@ -24,64 +24,50 @@
 
 		  	<div class="content-box-large">
 			<div class="panel-body">
+<?php
 
-			<h6>
-								<table width="100%" class="table table-striped table-bordered table-hover"id="dtexample" data-page-length="1">
-										                                <thead>
-										                                    <tr>
-										                                        <th style="color: green; font-size: 20px; text-align: center;">00 : 00 : 00 
-										                                        </th>
-										                                    </tr>
-										                                </thead>
-										                                <tbody>
-										                                	<tr style="border: none;">
-										                                		<td><p style="color: green;"><b>Question 1 : (2 mks)</b></p>
-																				<p><b>Who is the first president of the Republic of Kenya</b> 
-										                                        </p><p><input type="radio" name="gender" value="other">
-										                                		Raila Amolo Odinga</p>
-										                                		<br><p><input type="radio" name="gender" value="other">
-										                                		Raila Amolo Odinga</p>
-										                                		<br><p><input type="radio" name="gender" value="other">
-										                                		Raila Amolo Odinga</p>
-										                                		<br><p><input type="radio" name="gender" value="other">
-										                                		Raila Amolo Odinga</p>
-										                                	    </td>
-										                                     </tr>
-										                                     <tr style="border: none;">
-										                                		<td><p style="color: green;"><b>Question 2 : (2 mks)</b></p>
-																				<p><b>Who of the following is not a president in Kenya?</b> 
-										                                        </p><p><input type="radio" name="gender" value="other">
-										                                		Raila Amolo Odinga</p>
-										                                		<br><p><input type="radio" name="gender" value="other">
-										                                		Raila Amolo Odinga</p>
-										                                		<br><p><input type="radio" name="gender" value="other">
-										                                		Raila Amolo Odinga</p>
-										                                		<br><p><input type="radio" name="gender" value="other">
-										                                		Raila Amolo Odinga</p>
-										                                	    </td>
-										                                     </tr>
-										                                     <tr style="border: none;">
-										                                		<td><p style="color: green;"><b>Question 3 : (2 mks)</b></p>
-																				<p><b>Who of the following is going to be a president in Kenya?</b> 
-										                                        </p><p><input type="radio" name="gender" value="other">
-										                                		Raila Amolo Odinga</p>
-										                                		<br><p><input type="radio" name="gender" value="other">
-										                                		Raila Amolo Odinga</p>
-										                                		<br><p><input type="radio" name="gender" value="other">
-										                                		Raila Amolo Odinga</p>
-										                                		<br><p><input type="radio" name="gender" value="other">
-										                                		Raila Amolo Odinga</p>
-										                                	    </td>
-										                                     </tr>	
-										                                    
+                     // Retrieve the subject data from MySQL
+                      $dbc = mysqli_connect('localhost', 'root', '', 'test');
+                      if (isset($_GET['exam_id'])) 
+                              {
+                                // Grab the data from the GET  
+                                $exam_id = ($_GET['exam_id']);       
+                              }
 
-										                                </tbody>
-										                            </table>
-										                             <div>
-										                                     	<p style="color: green; font-size: 15px; text-align: center; border: 1px solid green; padding: 15px;"><a href="exams_start.php"><b class="text-success"><i class="glyphicon glyphicon-ok"></i> I AM DONE. FINISH THIS EXAM</b><b>&emsp;</b></a></p>
+                      $query = "SELECT * FROM `questions` WHERE exam_id = '$exam_id' ORDER by sort_order";
+                      $data = mysqli_query($dbc, $query)
+                              or die(mysqli_error());
 
-										                                     </div>
-										                        </h6>				
+                      // Loop through the array of user data, formatting it as HTML 
+                                echo '<h6><table width="100%" class="table table-striped table-bordered table-hover"id="dtexample" data-page-length="1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="color: green; font-size: 20px; text-align: center;">00 : 00 : 00 
+                                                            </th>
+                                                        </tr>
+                                                    </thead><tbody>';
+
+                                                    while ($row = mysqli_fetch_array($data)) 
+                                                    { 
+                                                   echo' 
+                                                      <tr style="border: none;">
+                                                        <td><p style="color: green;"><b>Question ' . $row['sort_order'] . ': (2 mks)</b></p>
+                                                            <p><b>' . $row['question_text'] . '</b> 
+                                                            </p><p><input type="radio" name="gender" value="other">
+                                                        ' . $row['choice_a'] . '</p>
+                                                        <br><p><input type="radio" name="gender" value="other">
+                                                        ' . $row['choice_b'] . '</p>
+                                                        <br><p><input type="radio" name="gender" value="other">
+                                                        ' . $row['choice_c'] . '</p>
+                                                        <br><p><input type="radio" name="gender" value="other">
+                                                        ' . $row['choice_d'] . '</p>
+                                                          </td>
+                                                         </tr>';
+                                                     }
+
+                      echo'</tbody></table><div><p style="color: green; font-size: 15px; text-align: center; border: 1px solid green; padding: 15px;"><a href="exams_start.php"><b class="text-success"><i class="glyphicon glyphicon-ok"></i> I AM DONE. FINISH THIS EXAM</b><b>&emsp;</b></a></p></div></h6>';
+                      mysqli_close($dbc);
+               ?> 				
 		  	</div>				
 		  </div>
 		</div>
