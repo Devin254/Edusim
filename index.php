@@ -1,163 +1,49 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
     <head>
-        <title>DataTables AJAX Pagination with search and sort - PHP</title>
-        <!-- Datatable CSS -->
-        <link href='DataTables/datatables.min.css' rel='stylesheet' type='text/css'>
-
-        <!-- jQuery Library -->
-        <script src="jquery-3.3.1.min.js"></script>
-        
-        <!-- Datatable JS -->
-        <script src="DataTables/datatables.min.js"></script>
-        
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <script type="text/javascript" src="inc/TimeCircles.js"></script>
+        <link rel="stylesheet" href="inc/TimeCircles.css" />
     </head>
-    <body >
-
-        <div >
-            <!-- Table -->
-            <table id='empTable' class='display dataTable'>
-                <thead>
-                <tr>
-                    <th>Employee name</th>
-                    <th>Email</th>
-                    <th>Gender</th>
-                    <th>Salary</th>
-                    <th>City</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                <tr>
-                    <td>Vincente Grace</td>
-                    <td>victor@gmail.com</td>
-                    <td>Female</td>
-                    <td>KES 50,000</td>
-                    <td>New Oleans</td>
-                </tr>
-                <tr>
-                    <td>Victor Kipkoech</td>
-                    <td>victor@gmail.com</td>
-                    <td>Male</td>
-                    <td>KES 30,000</td>
-                    <td>Rockport City</td>
-                </tr>
-                </tbody>
-                
-            </table>
+    <body>
+        <div class="container">
+            <div id="DateCountdown" data-date="2019-11-026 13:40:00" style="width: 500px; height: 125px; padding: 0px; box-sizing: border-box; background-color: #E0E8EF"></div>
+            <div style="padding: 10px;">      
+            </div>
+            <hr>
+            
         </div>
-        
-        <!-- Script -->
         <script>
-        $(document).ready(function(){
-            $('#empTable').DataTable();
-        });
-        </script>
+            $("#DateCountdown").TimeCircles();
+            $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
+            $("#PageOpenTimer").TimeCircles();
+            
+            var updateTime = function(){
+                var date = $("#date").val();
+                var time = $("#time").val();
+                var datetime = date + ' ' + time + ':00';
+                $("#DateCountdown").data('date', datetime).TimeCircles().start();
+            }
+            $("#date").change(updateTime).keyup(updateTime);
+            $("#time").change(updateTime).keyup(updateTime);
+            
+            // Start and stop are methods applied on the public TimeCircles instance
+            $(".startTimer").click(function() {
+                $("#CountDownTimer").TimeCircles().start();
+            });
+            $(".stopTimer").click(function() {
+                $("#CountDownTimer").TimeCircles().stop();
+            });
 
+            // Fade in and fade out are examples of how chaining can be done with TimeCircles
+            $(".fadeIn").click(function() {
+                $("#PageOpenTimer").fadeIn();
+            });
+            $(".fadeOut").click(function() {
+                $("#PageOpenTimer").fadeOut();
+            });
+
+        </script>       
     </body>
-
 </html>

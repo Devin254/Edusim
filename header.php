@@ -11,9 +11,18 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
     <link href="test.css" rel="stylesheet">
+    <link rel="stylesheet" href="inc/TimeCircles.css" />
 	<!-- Datatable CSS -->
     <link href='DataTables/datatables.min.css' rel='stylesheet' type='text/css'>
 
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <script type="text/javascript" src="inc/TimeCircles.js"></script>
+        <link rel="stylesheet" href="inc/TimeCircles.css" />
+
+     <!-- jTime Library -->
+
+     <script type="text/javascript" src="inc/TimeCircles.js"></script>
      <!-- jQuery Library -->
      <script src="jquery-3.3.1.min.js"></script>
         

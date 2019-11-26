@@ -24,51 +24,59 @@
 
 		  	<div class="content-box-large">
 			<div class="panel-body">
-<?php
+											<?php
 
-                     // Retrieve the subject data from MySQL
-                      $dbc = mysqli_connect('localhost', 'root', '', 'test');
-                      if (isset($_GET['exam_id'])) 
-                              {
-                                // Grab the data from the GET  
-                                $exam_id = ($_GET['exam_id']);       
-                              }
+											                     // Retrieve the subject data from MySQL
+											                      $dbc = mysqli_connect('localhost', 'root', '', 'test');
+											                      if (isset($_GET['exam_id'])) 
+											                              {
+											                                // Grab the data from the GET  
+											                                $exam_id = ($_GET['exam_id']);       
+											                              }
 
-                      $query = "SELECT * FROM `questions` WHERE exam_id = '$exam_id' ORDER by sort_order";
-                      $data = mysqli_query($dbc, $query)
-                              or die(mysqli_error());
+											                      $query = "SELECT * FROM `questions` WHERE exam_id = '$exam_id' ORDER by sort_order";
+											                      $data = mysqli_query($dbc, $query)
+											                              or die(mysqli_error());
 
-                      // Loop through the array of user data, formatting it as HTML 
-                                echo '<h6><table width="100%" class="table table-striped table-bordered table-hover"id="dtexample" data-page-length="1">
-                                                    <thead>
-                                                        <tr>
-                                                            <th style="color: green; font-size: 20px; text-align: center;">00 : 00 : 00 
-                                                            </th>
-                                                        </tr>
-                                                    </thead><tbody>';
+											                      // Loop through the array of user data, formatting it as HTML 
+                    echo '<h6><table width="100%" class="table table-striped table-bordered table-hover"id="dtexample" data-page-length="1">
+                                        <thead>
+                                            <tr>
+                                                <th style="color: green; font-size: 20px; text-align: center;">00 : 00 : 00 
+                                                </th>
+                                            </tr>
+                                        </thead><tbody>';
 
-                                                    while ($row = mysqli_fetch_array($data)) 
-                                                    { 
-                                                   echo' 
-                                                      <tr style="border: none;">
-                                                        <td><p style="color: green;"><b>Question ' . $row['sort_order'] . ': (2 mks)</b></p>
-                                                            <p><b>' . $row['question_text'] . '</b> 
-                                                            </p><p><input type="radio" name="gender" value="other">
-                                                        ' . $row['choice_a'] . '</p>
-                                                        <br><p><input type="radio" name="gender" value="other">
-                                                        ' . $row['choice_b'] . '</p>
-                                                        <br><p><input type="radio" name="gender" value="other">
-                                                        ' . $row['choice_c'] . '</p>
-                                                        <br><p><input type="radio" name="gender" value="other">
-                                                        ' . $row['choice_d'] . '</p>
-                                                          </td>
-                                                         </tr>';
-                                                     }
+                                        while ($row = mysqli_fetch_array($data)) 
+                                        { 
+                                       echo' 
+                                          <tr style="border: none;">
+                                            <td>
+                                            <form class="form-horizontal" role="form" method="post" action="questions_submit.php">
+                                            <input type="hidden"class="form-control" id="exam_id" name="exam_id" value=" '. $exam_id . '" />
+                                            <input type="hidden"class="form-control" id="question_id" name="question_id" value=" '. $row['question_id'] . '" />
+                                            <p style="color: green;"><b>Question ' . $row['sort_order'] . ': (2 mks)</b></p>
+                                                <p><b>' . $row['question_text'] . '</b> 
+                                                </p><p><input type="radio" name="radio" value="1">
+                                            ' . $row['choice_a'] . '</p>
+                                            <br><p><input type="radio" name="radio" value="2">
+                                            ' . $row['choice_b'] . '</p>
+                                            <br><p><input type="radio" name="radio" value="3">
+                                            ' . $row['choice_c'] . '</p>
+                                            <br><p><input type="radio" name="radio" value="4">
+                                            ' . $row['choice_d'] . '</p>
+                                            <input style="color: white; font-weight: bold;" type="submit" value="SUBMIT" class="btn btn-success" name="submit" />
+                                            </form>
+                                              </td>
+                                             </tr>';
+                                         }
 
-                      echo'</tbody></table><div><p style="color: green; font-size: 15px; text-align: center; border: 1px solid green; padding: 15px;"><a href="exams_start.php"><b class="text-success"><i class="glyphicon glyphicon-ok"></i> I AM DONE. FINISH THIS EXAM</b><b>&emsp;</b></a></p></div></h6>';
-                      mysqli_close($dbc);
-               ?> 				
-		  	</div>				
+          echo'</tbody></table><div><p style="color: green; font-size: 15px; text-align: center; border: 1px solid green; padding: 15px;"><a href="exams_start.php"><b class="text-success"><i class="glyphicon glyphicon-ok"></i> I AM DONE. FINISH THIS EXAM</b><b>&emsp;</b></a></p></div></h6>';
+          mysqli_close($dbc);
+   ?> 				
+		  	</div>
+
+                                				
 		  </div>
 		</div>
     </div>
