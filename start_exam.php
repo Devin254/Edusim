@@ -98,7 +98,9 @@
 	            </tr>
 	            <tr class="odd gradeX">
 	            <td><b>Action</b></td>
-	            <td><a href="exams_start.php?exam_id=' . $exam_id . '"><b class="text-info" style="font-size: 15px; text-align: center;">BEGIN THIS EXAM</b><b>&emsp;</b></a></td>
+	            <td><a href="exams_start.php?exam_id=' . $exam_id . '&amp;duration=' . $duration . '"><b class="text-info" style="font-size: 15px; text-align: center;">BEGIN THIS EXAM</b><b>&emsp;</b></a></td>
+
+
 	           
 
 	            </tr>	

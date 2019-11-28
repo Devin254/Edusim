@@ -1,49 +1,59 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-        <script type="text/javascript" src="inc/TimeCircles.js"></script>
-        <link rel="stylesheet" href="inc/TimeCircles.css" />
-    </head>
-    <body>
-        <div class="container">
-            <div id="DateCountdown" data-date="2019-11-026 13:40:00" style="width: 500px; height: 125px; padding: 0px; box-sizing: border-box; background-color: #E0E8EF"></div>
-            <div style="padding: 10px;">      
-            </div>
-            <hr>
+<?php
+  // Insert the page header
+  $page_title = 'Edusim - Dashboard';
+  
+  require_once('header.php');
+  require_once('examiner_db.php');
+?>
+
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-6">
             
+          </div>
+        </div> 
+       
+        <div class="row">
+          <div class="col-md-12 panel-warning">
+            <div class="content-box-header panel-heading">
+              <div class="panel-title ">
+                <h6><i class="glyphicon glyphicon-dashboard"></i>  <b>DASHBOARD</b></h6> 
+              </div>
+            </div>        
+          </div>
         </div>
-        <script>
-            $("#DateCountdown").TimeCircles();
-            $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
-            $("#PageOpenTimer").TimeCircles();
-            
-            var updateTime = function(){
-                var date = $("#date").val();
-                var time = $("#time").val();
-                var datetime = date + ' ' + time + ':00';
-                $("#DateCountdown").data('date', datetime).TimeCircles().start();
-            }
-            $("#date").change(updateTime).keyup(updateTime);
-            $("#time").change(updateTime).keyup(updateTime);
-            
-            // Start and stop are methods applied on the public TimeCircles instance
-            $(".startTimer").click(function() {
-                $("#CountDownTimer").TimeCircles().start();
-            });
-            $(".stopTimer").click(function() {
-                $("#CountDownTimer").TimeCircles().stop();
-            });
+ 
 
-            // Fade in and fade out are examples of how chaining can be done with TimeCircles
-            $(".fadeIn").click(function() {
-                $("#PageOpenTimer").fadeIn();
-            });
-            $(".fadeOut").click(function() {
-                $("#PageOpenTimer").fadeOut();
-            });
 
-        </script>       
-    </body>
+        <div class="content-box-large">
+        <div class="panel-body">  
+
+          <form class="form-horizontal" role="form" method="post" action="questions_submit.php">
+            <input type="hidden"class="form-control" id="question_id" name="question_id" value=" '. $row['question_id'] . '" />
+            <p style="color: green;"><b>Question 1</b></p>
+                <p><b></b> 
+                </p><p><input type="radio" name="radio" value="1">Option 1</p>
+                  <br><p><input type="radio" name="radio" value="2">Option 2 </p>
+                  <br><p><input type="radio" name="radio" value="3">Option 3</p>
+                  <br><p><input type="radio" name="radio" value="4">Option 4</p>
+                  <input type="hidden"class="form-control" id="question_id" name="question_id" value=" '. $row['question_id'] . '" />
+                  <p style="color: green;"><b>Question 2</b></p>
+                      <p><b></b> 
+                </p><p><input type="radio" name="radio1" value="1">Option 1</p>
+                  <br><p><input type="radio" name="radio1" value="2">Option 2</p>
+                  <br><p><input type="radio" name="radio1" value="3">Option 3</p>
+                  <br><p><input type="radio" name="radio1" value="4">Option 4</p>
+                  <input style="color: white; font-weight: bold;" type="submit" value="SUBMIT" class="btn btn-success" name="submit" />
+        </form>
+
+      </div>        
+      </div>
+    </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+  </body>
 </html>

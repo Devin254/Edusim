@@ -28,6 +28,7 @@
                         </div>
                     </div>              
                 </div>
+                <tr style="border: none; padding-left: 20px;">
             </div>
 
             <div class="content-box-large">

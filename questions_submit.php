@@ -13,6 +13,7 @@
 		  		</div>
 		  	</div>		  	
 		  	<div class="row">
+
 		  		<div class="col-md-12 panel-warning">
 		  			<div class="content-box-header panel-heading">
 	  					<div class="panel-title ">
@@ -20,7 +21,7 @@
 	  					</div>
 		  			</div>  			
 		  		</div>
-		  		<a href="exams_start.php">r</a>
+		  		
 		  	</div>
 
 		  	<div class="content-box-large">
@@ -28,46 +29,53 @@
 			<?php
                                   //Script - Store Subject Information
 
-                                  if (isset($_POST['submit'])) 
-                                  {
-
+                                 
                                     // Grab the data from post
-                                    
-                                    $question_id = ($_POST['question_id']);
-                                    $exam_id = ($_POST['exam_id']);
-                                    $answer = ($_POST['radio']);
-                                    $user_id = $_SESSION['user_id'];
-                                    
-                                    
-                                    
-                                    
+                                   
 
 
-                                      if (!empty($answer) && !empty($question_id) && !empty($user_id))
+                                    if (isset($_POST['submit'])) 
+                                    {
 
+                                        if (!empty($_POST['question_id']) && !empty($_POST['answer']) && !empty($_POST['user_id']) &&
+                                                 is_array($_POST['question_id']) && is_array($_POST['answer']) && is_array($_POST['user_id']) &&
+                                                 count($_POST['question_id']) === count($_POST['answer'])
+                                          ) 
                                         {
-                                                     //Connect to the database
+                                                  $question_id_array = $_POST['question_id'];
+                                                  $answer_array = $_POST['answer'];
+                                                  $user_id_array = $_POST['user_id'];
 
-                                                     $tt = mysqli_connect('localhost', 'root', '', 'test');
-                                                             $query = "INSERT INTO `provided_answers` (`pa_id`, `question_id`, `answers`, `user_id`) VALUES (NULL, '$question_id', '$answer', '$user_id') ";   
-                                                             
-                                                             mysqli_query($tt, $query);
+                                                  
 
-                                                           // Confirm success with the user
-                                                           
-                                                           echo'<a href="exams_start.php?exam_id=' . $exam_id . '"><b class="text-info" style="font-size: 15px; text-align: center;">BEGIN THIS EXAM</b><b>&emsp;</b></a>';
-                                                           
-                                        }
-                                        else 
-                                          {
-                                            echo '<div class="text-error"><strong><h6><i class="glyphicon glyphicon-remove-circle">&emsp;</i>OPPS! SOMETHING WENT WRONG</strong></h6></strong></div>';
-                                          }
-                                              // Clear the number data to clear the form
+
+                                                  for ($i = 0; $i < count($question_id_array); $i++) 
+                                                  {
+                                                      $tt = mysqli_connect('localhost', 'root', '', 'test');
+                                                      $question_id = $question_id_array[$i];
+                                                      $answer = $answer_array[$i];
+                                                      $user_id = $user_id_array[$i];
                                                       
-                                                        $radio = '';
-                                                        
+                                                      $query = "INSERT INTO `provided_answers` (`pa_id`, `question_id`, `answers`, `user_id`) VALUES (NULL, '$question_id', '$answer', '$user_id') ";   
+                                                             
+                                                       mysqli_query($tt, $query);
 
-                                  }
+                                                  } 
+
+                                                  echo'<h6><table width="100%" class="table table-striped table-bordered table-hover"id="dtexample" data-page-length="1">
+                                                  <thead>
+                                                      <th>THANK YOU FOR DOING THE EXAMS</th>
+                                                  </thead>
+                                                  <tbody>
+                                                  <tr><td><a href="exam_results.php">GENERATE RESULTS</a></td></tr>
+                                                  </tbody>
+                                                  </table></h6>';
+                                              }
+                                                                                  }
+
+                                    
+                                    
+                                  
  ?>					
 		  	</div>				
 		  </div>

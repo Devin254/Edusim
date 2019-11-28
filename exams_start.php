@@ -21,60 +21,115 @@
 		  			</div>  			
 		  		</div>
 		  	</div>
+       
 
 		  	<div class="content-box-large">
 			<div class="panel-body">
-											<?php
+                      											<?php
 
-											                     // Retrieve the subject data from MySQL
-											                      $dbc = mysqli_connect('localhost', 'root', '', 'test');
-											                      if (isset($_GET['exam_id'])) 
-											                              {
-											                                // Grab the data from the GET  
-											                                $exam_id = ($_GET['exam_id']);       
-											                              }
+                                                                             // Retrieve the subject data from MySQL
+                                                                              $dbc = mysqli_connect('localhost', 'root', '', 'test');
+                                                                              if (isset($_GET['exam_id'])) 
+                                                                                      {
+                                                                                        // Grab the data from the GET  
+                                                                                        $exam_id = ($_GET['exam_id']);
+                                                                                        $duration = ($_GET['duration']);      
+                                                                                      }
 
-											                      $query = "SELECT * FROM `questions` WHERE exam_id = '$exam_id' ORDER by sort_order";
-											                      $data = mysqli_query($dbc, $query)
-											                              or die(mysqli_error());
+                                                                              $query = "SELECT * FROM `questions` WHERE exam_id = '$exam_id' ORDER by sort_order";
+                                                                              $data = mysqli_query($dbc, $query)
+                                                                                      or die(mysqli_error());
 
-											                      // Loop through the array of user data, formatting it as HTML 
-                    echo '<h6><table width="100%" class="table table-striped table-bordered table-hover"id="dtexample" data-page-length="1">
-                                        <thead>
-                                            <tr>
-                                                <th style="color: green; font-size: 20px; text-align: center;">00 : 00 : 00 
-                                                </th>
-                                            </tr>
-                                        </thead><tbody>';
+                                                        
+                       
+                        echo'<h6><form class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="questions_submit.php">
+                       <table width="100%" class="table table-striped table-bordered table-hover"id="dtexample" data-page-length="1">
+                          <thead>
+                              <th><div style="text-align: center; font-size: 20px; color: green; id="clockdiv"> 
 
-                                        while ($row = mysqli_fetch_array($data)) 
-                                        { 
-                                       echo' 
-                                          <tr style="border: none;">
-                                            <td>
-                                            <form class="form-horizontal" role="form" method="post" action="questions_submit.php">
-                                            <input type="hidden"class="form-control" id="exam_id" name="exam_id" value=" '. $exam_id . '" />
-                                            <input type="hidden"class="form-control" id="question_id" name="question_id" value=" '. $row['question_id'] . '" />
-                                            <p style="color: green;"><b>Question ' . $row['sort_order'] . ': (2 mks)</b></p>
-                                                <p><b>' . $row['question_text'] . '</b> 
-                                                </p><p><input type="radio" name="radio" value="1">
-                                            ' . $row['choice_a'] . '</p>
-                                            <br><p><input type="radio" name="radio" value="2">
-                                            ' . $row['choice_b'] . '</p>
-                                            <br><p><input type="radio" name="radio" value="3">
-                                            ' . $row['choice_c'] . '</p>
-                                            <br><p><input type="radio" name="radio" value="4">
-                                            ' . $row['choice_d'] . '</p>
-                                            <input style="color: white; font-weight: bold;" type="submit" value="SUBMIT" class="btn btn-success" name="submit" />
-                                            </form>
-                                              </td>
-                                             </tr>';
-                                         }
+                                
+                                  D <span class="days" id="day"></span>:
 
-          echo'</tbody></table><div><p style="color: green; font-size: 15px; text-align: center; border: 1px solid green; padding: 15px;"><a href="exams_start.php"><b class="text-success"><i class="glyphicon glyphicon-ok"></i> I AM DONE. FINISH THIS EXAM</b><b>&emsp;</b></a></p></div></h6>';
-          mysqli_close($dbc);
-   ?> 				
-		  	</div>
+                                  
+                                  H <span class="hours" id="hour"></span>:
+
+                                  
+                                  M <span class="minutes" id="minute"></span>:
+
+                                   
+                                  S <span class="seconds" id="second"></span> 
+
+
+                              <p id="demo"></p></div>'?> 
+
+
+
+                              <script> 
+
+                              var duration = <?php echo $duration?>;
+                              var deadline = new Date(); 
+                              deadline.setMinutes(deadline.getMinutes() + duration);
+
+                              
+
+                              var x = setInterval(function() { 
+
+                              var now = new Date().getTime(); 
+                              var t = deadline - now; 
+                              var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
+                              var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+                              var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+                              var seconds = Math.floor((t % (1000 * 60)) / 1000); 
+                              document.getElementById("day").innerHTML =days ; 
+                              document.getElementById("hour").innerHTML =hours; 
+                              document.getElementById("minute").innerHTML = minutes; 
+                              document.getElementById("second").innerHTML =seconds; 
+                              if (t < 0) { 
+                                  clearInterval(x); 
+                                  document.getElementById("demo").innerHTML = "TIME UP"; 
+                                  document.getElementById("day").innerHTML ='0'; 
+                                  document.getElementById("hour").innerHTML ='0'; 
+                                  document.getElementById("minute").innerHTML ='0' ; 
+                                  document.getElementById("second").innerHTML = '0'; } 
+                              }, 1000); 
+                              </script> 
+                          <?php echo '</th>
+                          </thead>
+                          <tbody>';
+                          while ($row = mysqli_fetch_array($data)) 
+                          { 
+                          echo'
+                          <tr>
+                              <td><input type="hidden"class="form-control" id="question_id[]" name="question_id[]" value=" '. $row['question_id'] . '" />
+                                <br><p>' . $row['question_text'] . '</p>
+                                <br><p><b>Choice A: </b> ' . $row['choice_a'] . '</p>
+                                <br><p><b>Choice B: </b>' . $row['choice_b'] . '</p>
+                                <br><p><b>Choice C: </b>' . $row['choice_c'] . '</p>
+                                <br><p><b>Choice D: </b>' . $row['choice_d'] . '</p>
+
+                              <br>
+                              <select class="form-control" for="answer[]" name="answer[]" id="answer[]" value="">
+                                                  <option value="1">-- Select The Correct Answer</option>
+                                                  <option value="1">A</option>
+                                                  <option value="2">B</option>
+                                                  <option value="3">C</option>
+                                                  <option value="4">D</option>
+                               </select>';
+                               $user_id = $_SESSION['user_id'] ;
+                               echo'
+                              
+                              <br><input type="hidden"class="form-control" id="user_id[]" name="user_id[]" value=" '. $user_id . '" />
+                             </td>
+                          </tr>';
+                           }
+
+                      echo'
+                        </tbody>
+                      </table>
+                     
+
+                       <input type="submit" name="submit" value="SUBMIT" /></form></h6>';
+                       ?>
 
                                 				
 		  </div>
