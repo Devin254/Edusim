@@ -27,7 +27,7 @@
 				<div class="panel-body">
 				<h6>
 				
-Countdown Clock 
+Element Changed 
 <div id="clockdiv"> 
 
 	
