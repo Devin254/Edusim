@@ -41,20 +41,24 @@
                                                  is_array($_POST['question_id']) && is_array($_POST['answer']) && is_array($_POST['user_id']) &&
                                                  count($_POST['question_id']) === count($_POST['answer'])
                                           ) 
+                                         
                                         {
                                                   $question_id_array = $_POST['question_id'];
                                                   $answer_array = $_POST['answer'];
                                                   $user_id_array = $_POST['user_id'];
+                                                  $exam_id_array = $_POST['exam_id'];
 
                                                   
 
 
                                                   for ($i = 0; $i < count($question_id_array); $i++) 
                                                   {
-                                                      $tt = mysqli_connect('localhost', 'root', '', 'test');
+                                                      
                                                       $question_id = $question_id_array[$i];
                                                       $answer = $answer_array[$i];
                                                       $user_id = $user_id_array[$i];
+                                                      $exam_id = $exam_id_array[$i];
+                                                      $tt = mysqli_connect('localhost', 'root', '', 'test');
                                                       
                                                       $query = "INSERT INTO `provided_answers` (`pa_id`, `question_id`, `answers`, `user_id`) VALUES (NULL, '$question_id', '$answer', '$user_id') ";   
                                                              
@@ -67,9 +71,10 @@
                                                       <th>THANK YOU FOR DOING THE EXAMS</th>
                                                   </thead>
                                                   <tbody>
-                                                  <tr><td><a href="exam_results.php">GENERATE RESULTS</a></td></tr>
+                                                  <tr><td><a href="exam_results.php?exam_id=' . $exam_id .'">GENERATE RESULTS</a></td></tr>
                                                   </tbody>
                                                   </table></h6>';
+
                                               }
                                                                                   }
 

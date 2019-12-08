@@ -56,9 +56,17 @@
                                                      //Connect to the database
                                                      $tt = mysqli_connect('localhost', 'root', '', 'test');
                                                      $query = "INSERT INTO `exams` (`exam_id`, `category_id`, `subject_id`, `exam_name`, `duration`, `grade_level`, `exam_status`) VALUES (NULL, '$category_id', '$subject_id', '$exam_name', '$duration', '$grade_level', '$exam_status')";    mysqli_query($tt, $query);
-                                                           // Confirm success with the user
+                                                     if (mysqli_query($tt, $query)) 
+                                                     {
+                                                       // Confirm success with the user
                                                            
                                                             echo '<div class="text-success"><strong><h6>THE RECORD WAS UPDATED SUCCESFULLY</strong></h6></strong></div>';
+                                                     }
+                                                     else
+                                                     {
+                                                         echo '<div class="text-danger"><strong><h6>THE EXAM SUBJECT FOR THAT CATEGORY HAS ALREADY BEEN ADDED</strong></h6></strong></div>';
+                                                     }
+                                                           
                                                            
                                           }
                                         else 

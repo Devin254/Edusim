@@ -119,6 +119,7 @@
                                echo'
                               
                               <br><input type="hidden"class="form-control" id="user_id[]" name="user_id[]" value=" '. $user_id . '" />
+                                <input type="hidden"class="form-control" id="exam_id[]" name="exam_id[]" value=" '. $exam_id . '" />
                              </td>
                           </tr>';
                            }

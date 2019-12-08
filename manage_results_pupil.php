@@ -32,54 +32,54 @@
 
             <div class="content-box-large">
                 <div class="panel-body">
+                    <?php
+                    $dbc = mysqli_connect('localhost', 'root', '', 'test');
+                    $user_id = $_SESSION['user_id'] ;
+                    $query = "SELECT first_name, other_names FROM people WHERE user_id = '$user_id'";
+                    $data = mysqli_query($dbc, $query)
+                    or die(mysqli_error());
 
-                            <h6><table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    echo '<h6><table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
                                         <th>Exam Category Name</th>
-                                        <th>Date Ended</th>
                                         <th>Names</th>
-                                        <th>Grade Level</th>
                                         <th>Position</th>
+                                        <th>Maths</th>
+                                        <th>English</th>
+                                        <th>Kiswahili</th>
+                                        <th>Science</th>
+                                        <th>SS & CRE</th>
                                         <th>Total Marks(500)</th>
                                         <th>Action</th>
-                                        <th>Status</th>
+                                    
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="odd gradeX">
-                                        <td>ELDAMA RAVINE DIVISION END TERM</td>
-                                        <td>01-01-2020</td>
-                                        <td>VINCENT NZOMO MWINZILA</td>
-                                        <td>Grade 6</td>
+                                        <td>ELDAMA RAVINE DIVISION END TERM</td>';
+                                  while ($row = mysqli_fetch_array($data)) 
+                                    {
+                                    echo'
+                                        <td>' . $row['first_name'] . ' ' . $row['other_names'] . '</td>';
+                                    }
+                                    echo '
                                         <td>21</td>
+                                        <td>49</td>
+                                        <td>49</td>
+                                        <td>49</td>
+                                        <td>49</td>
+                                        <td>49</td>
                                         <td>327</td>
-                                         <td class="center"><button class="btn btn-success btn-xs"><a href="manage_exam_detail_examiner.php"><b style="color: white;"> MORE</b></a></button> <button class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-print"></button></td>
-                                        <td class=""><p class="text-danger"><i class="glyphicon glyphicon-off"></i></p></td>
-                                    </tr>                             
-                                    <tr class="odd gradeX">
-                                        <td>HIGH FLYER BOOK EXAMS</td>
-                                        <td>01-01-0000</td>
-                                        <td>VINCENT NZOMO MWINZILA</td>
-                                        <td>Grade 6</td>
-                                        <td>1</td>
-                                        <td>417</td>
-                                         <td class="center"><button class="btn btn-success btn-xs"><a href="manage_exam_detail_examiner.php"><b style="color: white;"> MORE</b></a></button> <button class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-print"></button></td>
-                                        <td class=""><p class="text-success"><i class="glyphicon glyphicon-ok"></i></p></td>
-                                    </tr>     
-                                    <tr class="odd gradeX">
-                                        <td>GRADE SIX GENERAL CATS</td>
-                                        <td>01-01-0000</td>
-                                        <td>VINCENT NZOMO MWINZILA</td>
-                                        <td>Grade 6</td>
-                                        <td>3</td>
-                                        <td>391</td>
-                                         <td class="center"><button class="btn btn-success btn-xs"><a href="manage_exam_detail_examiner.php"><b style="color: white;"> MORE</b></a></button> <button class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-print"></button></td>
-                                        <td class=""><p class="text-success"><i class="glyphicon glyphicon-ok"></i></p></td>
-                                    </tr>     
+                                         <td class="center"><button class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-print"></button></td>
+                                        
+                                    </tr>                                  
                                 </tbody>
                             </table>
-                        </h6>                       
+                        </h6>';
+                      ?>
+
+                                                   
             </div>              
           </div>
         </div>

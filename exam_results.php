@@ -33,17 +33,69 @@
 			                               $result = mysqli_num_rows($data);
 			                               $q = mysqli_num_rows($data1);
 			                               $performance = ($result / $q) * 100; 
+			                               if (isset($_GET['exam_id'])) 
 
+	                                           {
+	                                          // Grab the data from the GET
+	                                          
+	                                          $exam_id = ($_GET['exam_id']);
+	                                          // Grab the data from the SESSION 
 
-										echo'<h6><table width="100%" class="table table-striped table-bordered table-hover"id="dtexample" data-page-length="1">
-							                                                  <thead>
-							                                                      <th>THANK YOU FOR DOING THE EXAMS</th>
-							                                                  </thead>
-							                                                  <tbody>
-							                                                  <tr><td style="text-align: center;">YOU HAVE SCORED</td></tr>
-							                                                  <tr><td style="font-size: 40px; color: green; text-align: center;">'. $performance .'%</td></tr>
-							                                                  </tbody>
-							                                                  </table></h6>';	
+	                                          $user_id = $_SESSION['user_id'] ;
+	                                          $tt = mysqli_connect('localhost', 'root', '', 'test');
+
+	                                          $query_type = "SELECT user_id, exam_id, score FROM performance WHERE user_id = '$user_id' AND exam_id = '$exam_id'";
+			                                            $data_exam = mysqli_query($tt, $query_type);
+			                                            $rows = mysqli_fetch_array($data_exam);
+			                                            $scoreline = $rows['score'];
+                                 
+                                            if (mysqli_num_rows($data_exam) == 0) 
+                                            {            
+	                                                     $query3 = "INSERT INTO `performance` (`performance_id`, `exam_id`, `user_id`, `score`) VALUES (NULL, '$exam_id', '$user_id', '$performance')";    
+	                                                      mysqli_query($tt, $query3);
+
+												echo'<h6><table width="100%" class="table table-striped table-bordered table-hover"id="dtexample" data-page-length="1">
+									                                                  <thead>
+									                                                      <th>THANK YOU FOR DOING THE EXAMS</th>
+									                                                  </thead>
+									                                                  <tbody>
+									                                                  <tr><td style="text-align: center;">YOU HAVE SCORED</td></tr>
+									                                                  <tr><td style="font-size: 40px; color: green; text-align: center;">'. $performance .'%</td></tr>
+									                                                  </tbody>
+									                                                  </table></h6>';
+
+									           	$dd = mysqli_connect('localhost', 'root', '', 'test');
+									        	$query10 = "DELETE FROM provided_answers";    
+	                                            mysqli_query($dd, $query10);
+									           
+									        	
+									   
+
+									   
+                                            }
+									        
+									        else 
+									        {
+									        	echo'<h6><table width="100%" class="table table-striped table-bordered table-hover"id="dtexample" data-page-length="1">
+									                                                  <thead>
+									                                                      <th>THANK YOU FOR DOING THE EXAMS</th>
+									                                                  </thead>
+									                                                  <tbody>
+									                                                  <tr><td style="text-align: center;">YOU HAVE SCORED</td></tr>
+									                                                  <tr><td style="font-size: 40px; color: green; text-align: center;">'. $performance .'%</td></tr>
+									                                                  <tr><td style="text-align: center; color: seagreen;">PLEASE NOT THAT THE SCORE YOU GET FROM A REDO DOES NOT CHANGE YOUR PREVIOUS PERFORMANCE</td></tr>
+									                                                  <tr></tr>
+									                                                  <tr><td style="text-align: center;">YOU PREVIOUS SCORE WAS</td></tr>
+									                                                  <tr><td style="font-size: 40px; color: green; text-align: center;">'. $scoreline .'%</td></tr>
+									                                                  </tbody>
+									                                                  </table></h6>';
+									                                                  $tt = mysqli_connect('localhost', 'root', '', 'test');
+									        	$query6 = "DELETE FROM provided_answers";    
+	                                            mysqli_query($tt, $query6);
+									        }								        
+
+                                          }
+
                                             ?>			
 		  	</div>				
 		  </div>

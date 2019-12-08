@@ -83,12 +83,18 @@
                                             // Look up the username and password in the database
                                             $query = "SELECT user_id, username, type, status FROM user WHERE username = '$user_username' AND password = SHA('$user_password')";
                                             $data = mysqli_query($tt, $query);
-                                            $query_type = "SELECT type FROM user WHERE username = '$user_username'";
+                                            $query_type = "SELECT type, status FROM user WHERE username = '$user_username'";
                                             $user_type_data = mysqli_query($tt, $query_type);
                                             $row = mysqli_fetch_array($user_type_data);
                                             $type_data = $row['type'];
+                                            $status = $row['status'];
                                             if (mysqli_num_rows($data) == 1) 
-                                            {
+                                            { 
+
+                                              if ($status == 1) 
+                                              {
+                                              
+                                              
                                               if ($type_data == 'PUPIL') 
                                               {
                                                     // The log-in is OK so set the user ID and username session vars (and cookies), and redirect to the home page
@@ -119,6 +125,20 @@
                                                     setcookie('username', $row['username'], time() + (60 * 60 * 24 * 30));  // expires in 30 days
                                                     $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/dashboard_examiner.php';
                                                     header('Location: ' . $home_url);
+                                              }
+
+                                              }
+
+                                              else
+                                              {
+                                                 $error_msg = '<br>
+                                                    <div class="alert alert-danger alert-dismissible">
+                                                                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                  <p style="font-size: 11px;"><strong><i class="glyphicon glyphicon-remove-circle"></i></strong></h6>
+                                                                  <strong> YOUR ACCOUNT HAS NOT YET BEEN ACTIVATED</strong>
+                                                                  </p>
+                                                    </div>';
+                                                    echo $error_msg;
                                               }
 
                                               

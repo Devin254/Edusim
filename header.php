@@ -9,8 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- styles -->
     <link href="test.css" rel="stylesheet">
+    <link href="css/fontawesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="inc/TimeCircles.css" />
 	<!-- Datatable CSS -->
     <link href='DataTables/datatables.min.css' rel='stylesheet' type='text/css'>
