@@ -35,7 +35,7 @@
                     <?php
                     $dbc = mysqli_connect('localhost', 'root', '', 'test');
                     $user_id = $_SESSION['user_id'] ;
-                    $query = "SELECT first_name, other_names FROM people WHERE user_id = '$user_id'";
+                    $query = "SELECT exams. exam_name, performance. score, performance. user_id, people. first_name, people. other_names, category. category_name, subjects. subject_name FROM performance INNER JOIN exams ON exams. exam_id = performance. exam_id INNER JOIN people ON performance. user_id = people. user_id INNER JOIN category ON category. category_id = exams. category_id INNER JOIN subjects ON exams. subject_id = subjects. subject_id WHERE performance. user_id = '$user_id'";
                     $data = mysqli_query($dbc, $query)
                     or die(mysqli_error());
 
@@ -43,44 +43,44 @@
                                 <thead>
                                     <tr>
                                         <th>Exam Category Name</th>
-                                        <th>Names</th>
-                                        <th>Position</th>
-                                        <th>Maths</th>
-                                        <th>English</th>
-                                        <th>Kiswahili</th>
-                                        <th>Science</th>
-                                        <th>SS & CRE</th>
-                                        <th>Total Marks(500)</th>
-                                        <th>Action</th>
+                                        <th>Name</th>
+                                        <th>Exam Paper Name</th>
+                                        <th>Subject</th>
+                                        <th>Score</th>
                                     
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd gradeX">
-                                        <td>ELDAMA RAVINE DIVISION END TERM</td>';
+                                    ';
+                                    $final_score = 0;
                                   while ($row = mysqli_fetch_array($data)) 
                                     {
-                                    echo'
-                                        <td>' . $row['first_name'] . ' ' . $row['other_names'] . '</td>';
+                                    echo'<tr class="odd gradeX">   
+                                        <td>' . $row['category_name'] . '</td>
+                                        <td>' . $row['first_name'] . ' ' . $row['other_names'] . '</td>
+                                        <td>' . $row['exam_name'] . '</td>
+                                        <td>' . $row['subject_name'] . '</td>
+                                        <td>' . $row['score'] . '</td>
+                                         </tr>';
+                                        $final_score += $row['score'];
                                     }
-                                    echo '
-                                        <td>21</td>
-                                        <td>49</td>
-                                        <td>49</td>
-                                        <td>49</td>
-                                        <td>49</td>
-                                        <td>49</td>
-                                        <td>327</td>
-                                         <td class="center"><button class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-print"></button></td>
+                                    
+                                    echo'<tr class="odd gradeX">   
+                                        <td>TOTAL</td>
+                                        <td><a href="pdf/textwrapping.php?user_id=' . $user_id .'">PRINT</a></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>';echo $final_score; echo'</td>
+                                        <td></td> </tr>
                                         
-                                    </tr>                                  
+                                                                     
                                 </tbody>
                             </table>
                         </h6>';
                       ?>
 
                                                    
-            </div>              
+            </div>             
           </div>
         </div>
     </div>
