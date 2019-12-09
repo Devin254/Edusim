@@ -11,6 +11,13 @@ if (isset($_GET['logout'])) {
 	unset($_SESSION['user']);
 	header("location: login.php");
 }
+//user test 
+if (isset($_GET['logout'])) {
+	session_destroy();
+	unset($_SESSION['user']);
+	header("location: login.php");
+}
+?>
 ?>
 <!DOCTYPE html>
 <html>
