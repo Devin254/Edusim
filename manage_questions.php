@@ -9,6 +9,7 @@
 		  <div class="col-md-10">
 		  	<div class="row">
 		  		<div class="col-md-6">
+
 		  			
 		  		</div>
 		  	</div>		  	
@@ -16,7 +17,8 @@
 		  		<div class="col-md-12 panel-warning">
 		  			<div class="content-box-header panel-heading">
 	  					<div class="panel-title ">
-	  						<h6><i class="glyphicon glyphicon-dashboard"></i>  <b>DASHBOARD</b></h6> 
+	  						<h6><i class="glyphicon glyphicon-dashboard"></i>  <b>QUESTIONS PANEL</b></h6> 
+
 	  					</div>
 		  			</div>  			
 		  		</div>
@@ -32,6 +34,8 @@
                       
                       $exam_id = ($_GET['exam_id']);
                       $exam_name = ($_GET['exam_name']);
+                      echo '<p style="font-size: 17px; color: green; text-align: center; font-weight: bold;">' . $exam_name .'</p>';
+
                       
                     
                     }
@@ -41,14 +45,16 @@
                       echo '';
                     }
 
-                    echo '<p style="font-size: 13px; color: green;"> YOU ARE STILL EDITING</p>';
+                    
+
+                    
 
                     if (isset($_POST['submit'])) 
                     {
 
                       // Grab the data from post
                       
-                      
+                      $exam_name = ($_POST['exam_name']);
                       $exam_id = ($_POST['exam_id']);
                       $question_text = ($_POST['question_text']);
                       $sort_order = ($_POST['sort_order']);
@@ -58,6 +64,8 @@
                       $choice_d = ($_POST['choice_d']);
                       $answer = ($_POST['answer']);
 
+                      echo '<p style="font-size: 17px; color: green; text-align: center; font-weight: bold;">' . $exam_name .'</p>';
+                      
                       
                       
 
@@ -72,12 +80,12 @@
                                       mysqli_query($tt, $query);
                                       // Confirm success with the user
                                              
-                                      echo '<div class="text-success"><strong><h6>THE QUESTION WAS UPDATED SUCCESFULLY</strong></h6></strong></div>';
+                                      echo '<div class="alert alert-success" style="width: 32%; position: relative; float: left; left: 33%;"><p class="mb-0"><strong><h6><i class="glyphicon glyphicon-ok"></i> &nbsp;The question was updated successfully</strong></h6></strong></p></div>';
                                              
                             }
                           else 
                             {
-                              echo '<div class="text-error"><strong><h6><i class="glyphicon glyphicon-remove-circle">&emsp;</i>OPPS! SOMETHING WENT WRONG</strong></h6></strong></div>';
+                              echo '<div class="alert alert-danger" style="width: 32%; position: relative; float: left; left: 34%;"><p class="mb-0"><strong><h6><i class="glyphicon glyphicon-remove"></i> &nbsp;Please enter all the information provided</strong></h6></strong></p></div>';
                             }
                                 // Clear the number data to clear the form
                                           $question_text = '';
@@ -93,7 +101,7 @@
           ?>
 				        <div class="panel-body">
 					        <h6>
-                    <p>Questions Listing:</p>
+                   
                                     <?php
 
                                     // Retrieve the subject data from MySQL
@@ -103,10 +111,7 @@
                                     or die(mysqli_error());
                                     if (mysqli_num_rows($data) == 0) 
                                             {
-                                              echo '<div class="alert alert-warning alert-dismissible" style="size: 30px;">
-                                                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                                        <h6><strong><i class="glyphicon glyphicon-ok-danger"></i><strong></strong> THERE ARE NO QUESTIONS AVAILABLE. TRY ADDING THEM</h6>
-                                                                   </div>';
+                                              echo '<div class="alert alert-warning" style="width: 40%; position: relative; float: left; left: 31%;"><p class="mb-0"><strong><h6><i class="glyphicon glyphicon-info-sign"></i> &nbsp;There are no questions available. Try adding them</strong></h6></strong></p></div>';
                                             }
 
                                     else
@@ -186,6 +191,7 @@
                     <br>
                         
                         <form class="form-horizontal" role="form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                <input type="hidden"class="form-control" id="exam_name" name="exam_name" value="<?php if (!empty($exam_name)) echo $exam_name; ?>"/>
                                 <input type="hidden"class="form-control" id="exam_id" name="exam_id" value="<?php if (!empty($exam_id)) echo $exam_id; ?>"/>
                                 <div class="form-group">
                                 <label for="question_text" class="col-sm-2 control-label">Question Text</label>

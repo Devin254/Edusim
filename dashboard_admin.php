@@ -25,7 +25,7 @@
 
 		  	<div class="content-box-large">
 				<div class="panel-body">
-					  <i class="fa fa-car" style="font-size: 48px;"></i><em class="fa fa-home"></em>
+					  <div class="alert alert-success" style="width: 32%; position: relative; float: left; left: 33%;"><p class="mb-0"><strong><h6><i class="glyphicon glyphicon-ok"></i> &nbsp;The question was updated successfully</strong></h6></strong></p></div>
 
 
 		  	    </div>				
