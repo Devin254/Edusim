@@ -81,12 +81,13 @@
                                       mysqli_query($tt, $query);
                                              // Confirm success with the user
                                              
-                                              echo '<div class="text-success"><strong><h6><i class="glyphicon glyphicon-remove-circle">&emsp;</i>THE RECORD WAS UPDATED SUCCESFULLY</strong></h6></strong></div>';
+                                              echo '<div class="alert alert-success" style="width: 29%; position: relative; float: left; left: 34%;"><p class="mb-0"><strong><h6><i class="glyphicon glyphicon-ok"></i> &nbsp;The record was updated successfuly</strong></h6></strong></p></div>';
                                               
                             }
+
                           else 
                             {
-                              echo '<div class="text-danger"><strong><h6><i class="glyphicon glyphicon-remove-circle">&emsp;</i>ERROR ON PROFILE ACESS</strong></h6></strong></div>';
+                              echo '<div class="alert alert-danger" style="width: 32%; position: relative; float: left; left: 34%;"><p class="mb-0"><strong><h6><i class="glyphicon glyphicon-remove"></i> &nbsp;There was an error loading your profile. Try later.</strong></h6></strong></p></div>';
                             }
                     }
                 else

@@ -104,13 +104,13 @@
                                 <div class="form-group">
                                 <label for="start_date" class="col-sm-2 control-label">Start Date</label>
                                 <div class="col-sm-8">
-                                <input type="text"class="form-control" id="start_date" name="start_date" value="<?php if (!empty($start_date)) echo $start_date; ?>" />
+                                <input type="date"class="form-control" id="start_date" name="start_date" value="<?php if (!empty($start_date)) echo $start_date; ?>" />
                                 </div>
                                </div>
                                <div class="form-group">
                                 <label for="end_date" class="col-sm-2 control-label">End Date</label>
                                 <div class="col-sm-8">
-                                <input type="text"class="form-control" id="end_date" name="end_date" value="<?php if (!empty($end_date)) echo $end_date; ?>" />
+                                <input type="date"class="form-control" id="end_date" name="end_date" value="<?php if (!empty($end_date)) echo $end_date; ?>" />
                                 </div>
                                </div>
                                <div class="form-group">

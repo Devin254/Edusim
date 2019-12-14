@@ -32,7 +32,7 @@
 
             <div class="content-box-large">
                 <div class="panel-body">
-<?php
+               <?php
 
                      // Retrieve the subject data from MySQL
                       $dbc = mysqli_connect('localhost', 'root', '', 'test');
@@ -59,7 +59,7 @@
                       echo '<tr class="odd gradeX"><td>' . $row['category_name'] . '</td>';
                       echo '<td>' . $row['end_date'] . '</td>';
                       echo '<td>' . $row['grade_level'] . '</td>';                    
-                      echo '<td class="center"><a href="manage_results_detail.php"><b class="text-success">VIEW RESULTS</b><b>&emsp;</b></a><a href=""><b class="text-info"><i class="glyphicon glyphicon-print"></b></a></td>';
+                      echo '<td class="center"><a href="manage_results_detail.php?category_name=' . $row['category_name'] . '&amp;category_id=' . $row['category_id'] . '"><b class="text-success">VIEW RESULTS</b><b>&emsp;</b></a><a href=""><b class="text-info"><i class="glyphicon glyphicon-print"></b></a></td>';
 
 
 

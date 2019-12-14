@@ -3,9 +3,9 @@
 		  <div class="col-md-2">
 		  	<div class="sidebar content-box" style="display: block;">
                 <ul class="nav">
-                    <li class="current"><a href="dashboard_pupil.php">
+                    <li class="current"><a href="dashboard_pupil.php" style="color: green;">
                         <form name="Tick">
-                        <input type="text" size="11" name="Clock">
+                        <input type="text" size="9" name="Clock">
                         </form>
                         <script language="javascript" type="text/javascript">
                         <!--

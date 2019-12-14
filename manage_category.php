@@ -95,13 +95,16 @@
 		</div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script type="text/javascript">     
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript"> 
+
     $(document).ready(function () 
     {
     $('#dtexample').DataTable();
     } 
     );
     </script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>

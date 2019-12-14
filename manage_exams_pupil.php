@@ -54,7 +54,7 @@
                       {
 
                       // Loop through the array of user data, formatting it as HTML 
-                                echo '<h6><table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                echo '<h6><table width="100%" class="table table-striped table-bordered table-hover" id="dtexample">
                                 <thead>
                                     <tr>
                                         <th>Exam Category Name</th>
@@ -101,7 +101,14 @@
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">     
+    $(document).ready(function () 
+    {
+    $('#dtexample').DataTable();
+    } 
+    );
+    </script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>

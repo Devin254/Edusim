@@ -40,12 +40,12 @@
 
                      // Retrieve the subject data from MySQL
                       $dbc = mysqli_connect('localhost', 'root', '', 'test');
-                      $query = "SELECT * FROM `exams`";
+                      $query = "SELECT exams. category_id, exams. subject_id, exams. exam_name, exams. duration, exams. grade_level, exams. exam_id, exams. exam_status, category. category_name, subjects. subject_name  FROM `exams` INNER JOIN category ON exams. category_id = category. category_id INNER JOIN subjects ON exams. subject_id = subjects. subject_id ";
                       $data = mysqli_query($dbc, $query)
                       or die(mysqli_error());
 
                       // Loop through the array of user data, formatting it as HTML 
-                                echo '<h6><table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                echo '<h6><table width="100%" class="table table-striped table-bordered table-hover" id="dtexample">
                                 <thead>
                                     <tr>
                                         <th>Exam Category Name</th>
@@ -62,13 +62,13 @@
                      { 
                       // Display the subject information
                       
-                      echo '<tr class="odd gradeX"><td>' . $row['category_id'] . '</td>';
-                      echo '<td>' . $row['subject_id'] . '</td>';
+                      echo '<tr class="odd gradeX"><td>' . $row['category_name'] . '</td>';
+                      echo '<td>' . $row['subject_name'] . '</td>';
                       echo '<td>' . $row['exam_name'] . '</td>';
                       echo '<td>' . $row['duration'] . '</td>';
                       echo '<td>' . $row['grade_level'] . '</td>';                    
-                      echo '<td class="center"><a href="manage_questions.php?exam_id=' . $row['exam_id'] . '&amp;exam_name=' . $row['exam_name'] . '"><b class="text-info">QUESTIONS</b><b>&emsp;</b></a> <a href="edit_exam.php?exam_id=' . $row['exam_id'] . '&amp;category_id=' . $row['category_id'] . '&amp;subject_id=' . $row['subject_id'] . '&amp;exam_name=' . $row['exam_name'] . '&amp;duration=' . $row['duration'] . '&amp;grade_level=' . $row['grade_level'] . '&amp;exam_status=' . $row['exam_status'] .  '"><b class="text-success"> EDIT</b></a><b>&emsp;</b>';
-                      echo '<b><a href="remove_exam.php?exam_id=' . $row['exam_id'] . '&amp;category_id=' . $row['category_id'] . '&amp;subject_id=' . $row['subject_id'] . '&amp;exam_name=' . $row['exam_name'] . '&amp;duration=' . $row['duration'] . '&amp;grade_level=' . $row['grade_level'] . '&amp;exam_status=' . $row['exam_status'] .  '"><b class="text-warning"> DELETE</b></a></td>';
+                      echo '<td class="center"><a href="manage_questions.php?exam_id=' . $row['exam_id'] . '&amp;exam_name=' . $row['exam_name'] . '"><b class="text-info">QUESTIONS</b><b>&emsp;</b></a> <a href="edit_exam.php?exam_id=' . $row['exam_id'] . '&amp;category_id=' . $row['category_id'] .  '&amp;category_name=' . $row['category_name'] .'&amp;subject_id=' . $row['subject_id'] . '&amp;exam_name=' . $row['exam_name'] . '&amp;duration=' . $row['duration'] . '&amp;grade_level=' . $row['grade_level'] . '&amp;exam_status=' . $row['exam_status'] .  '"><b class="text-success"> EDIT</b></a><b>&emsp;</b>';
+                      echo '<b><a href="remove_exam.php?exam_id=' . $row['exam_id'] . '&amp;category_id=' . $row['category_id'] . '&amp;category_name=' . $row['category_name'] . '&amp;subject_id=' . $row['subject_id'] . '&amp;exam_name=' . $row['exam_name'] . '&amp;duration=' . $row['duration'] . '&amp;grade_level=' . $row['grade_level'] . '&amp;exam_status=' . $row['exam_status'] .  '"><b class="text-warning"> DELETE</b></a></td>';
 
                       $cat = $row['exam_status']; 
 
@@ -93,14 +93,17 @@
 
         </div>
     </div>
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript">     
-    $(document).ready( function () {
-    $('#tbl').DataTable();
-    } );
-    </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript"> 
+
+    $(document).ready(function () 
+    {
+    $('#dtexample').DataTable();
+    } 
+    );
+    </script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>

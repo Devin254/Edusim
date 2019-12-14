@@ -44,6 +44,7 @@
                                           
                                           $exam_id = ($_GET['exam_id']);
                                           $category_id = ($_GET['category_id']);
+                                          $category_name = ($_GET['category_name']);
                                           $subject_id = ($_GET['subject_id']);
                                           $exam_name = ($_GET['exam_name']);
                                           $duration = ($_GET['duration']);
@@ -126,7 +127,7 @@
                                 <label for="category_id" class="col-sm-2 control-label">Category Name</label>
                                 <div class="col-sm-8">
                                 <select class="form-control" for="category_id" name="category_id" id="category_id" value="<?php if (!empty($category_id)) echo $category_id; ?>">
-                                                  <option value="">-- Select Exam Category -- </option>
+                                                  <option value="<?php if (!empty($category_id)) echo $category_id;?>"><?php if (!empty($category_id)) echo $category_name; ?> </option>
                                                   <?php
                                                     $dbc = mysqli_connect('localhost', 'root', '', 'test');
                                                     $category_name = $row10['category_name'];

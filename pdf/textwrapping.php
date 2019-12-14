@@ -91,7 +91,7 @@ $pdf->SetFont('Courier','',8);
 $pdf->SetDrawColor(0,100,0);
 $user_id = ($_GET['user_id']);
 $query=mysqli_query($con,"SELECT exams. exam_name, performance. score, performance. user_id, people. first_name, people. other_names, category. category_name, subjects. subject_name FROM performance INNER JOIN exams ON exams. exam_id = performance. exam_id INNER JOIN people ON performance. user_id = people. user_id INNER JOIN category ON category. category_id = exams. category_id INNER JOIN subjects ON exams. subject_id = subjects. subject_id WHERE performance. user_id = '$user_id'");
-$query2 =mysqli_query($con,"SELECT people. first_name, people. other_names, category. category_name FROM performance INNER JOIN exams ON exams. exam_id = performance. exam_id INNER JOIN people ON performance. user_id = people. user_id INNER JOIN category ON category. category_id = exams. category_id INNER JOIN subjects ON exams. subject_id = subjects. subject_id WHERE performance. user_id = '$user_id' LIMIT 1");
+$query2 =mysqli_query($con,"SELECT people. identification, people. first_name, people. other_names, category. category_name FROM performance INNER JOIN exams ON exams. exam_id = performance. exam_id INNER JOIN people ON performance. user_id = people. user_id INNER JOIN category ON category. category_id = exams. category_id INNER JOIN subjects ON exams. subject_id = subjects. subject_id WHERE performance. user_id = '$user_id' LIMIT 1");
 
 
 //define standard font size

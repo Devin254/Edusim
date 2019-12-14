@@ -36,7 +36,7 @@
 
                      // Retrieve the subject data from MySQL
                       $dbc = mysqli_connect('localhost', 'root', '', 'test');
-                      $query = "SELECT user. username, people. first_name, people. other_names, user. type, user. status FROM people INNER JOIN user ON people. user_id = user. user_id";
+                      $query = "SELECT user. username, people. first_name, people. other_names, people. identification, user. type, user. status FROM people INNER JOIN user ON people. user_id = user. user_id";
                       $data = mysqli_query($dbc, $query)
                               or die(mysqli_error());
 
@@ -46,6 +46,7 @@
                                     <tr>
                                         <th>Username</th>
                                         <th>Names</th>
+                                        <th>Identification</th>
                                         <th>Account Type</th>
                                         <th>Action</th>
                                         <th>Status</th>
@@ -58,6 +59,7 @@
                       
                       echo '<tr class="odd gradeX"><td>' . $row['username'] . '</td>';
                       echo '<td>' . $row['first_name'] . ' ' . $row['other_names'] . '</td>';
+                      echo '<td>' . $row['identification'] . '</td>';
                       echo '<td>' . $row['type'] . '</td>';                     
                       echo '<td class="center"><a href="edit_user.php?status=' . $row['status'] . '&amp;username=' . $row['username'] . '"><b class="text-success"> EDIT</b></a><b>&emsp;</b>';
                       echo '<a href="remove_user.php?username=' . $row['username'] . '&amp;status=' . $row['status'] . '"><b class="text-warning"> DELETE</b></a></td>';

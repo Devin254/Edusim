@@ -23,7 +23,17 @@
 		  	</div>
 
 		  	<div class="content-box-large">
-			<div class="panel-body">				
+			<div class="panel-body">
+			<?php
+             $username = $_SESSION['username'] ;
+             echo'<div class="alert alert-success" style="width: 45%; position: relative; float: left; left: 27%;"><p class="mb-0"><strong><h6><b><i class="glyphicon glyphicon-info-sign"></i> &nbsp; 
+                 Welcome ' . $username . '. This is the Edusim examination platform. </b>
+                 </h6><p>
+
+
+
+             </p></strong></h6></strong></p></div>';
+			?>				
 		  	</div>				
 		  </div>
 		</div>

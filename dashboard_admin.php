@@ -25,7 +25,16 @@
 
 		  	<div class="content-box-large">
 				<div class="panel-body">
-					  <div class="alert alert-success" style="width: 32%; position: relative; float: left; left: 33%;"><p class="mb-0"><strong><h6><i class="glyphicon glyphicon-ok"></i> &nbsp;The question was updated successfully</strong></h6></strong></p></div>
+					  <?php
+			             $username = $_SESSION['username'] ;
+			             echo'<div class="alert alert-success" style="width: 45%; position: relative; float: left; left: 27%;"><p class="mb-0"><strong><h6><b><i class="glyphicon glyphicon-info-sign"></i> &nbsp; 
+			                 Welcome ' . $username . '. This is the Edusim examination platform. </b>
+			                 </h6><p>
+
+
+
+			             </p></strong></h6></strong></p></div>';
+						?>	
 
 
 		  	    </div>				

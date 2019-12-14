@@ -117,7 +117,7 @@
 								  
 								?>  <i class="glyphicon glyphicon-user"></i></a>
 	                        <ul class="dropdown-menu animated fadeInUp">
-	                          <li><a href="manage_lecturer_profile.php">Profile</a></li>
+	                          <li><a href="">Profile</a></li>
 	                          <li><a href="logout.php">Logout</a></li>
 	                        </ul>
 	                      </li>

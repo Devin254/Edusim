@@ -24,7 +24,7 @@
                 <div class="col-md-12 panel-warning">
                     <div class="content-box-header panel-heading">
                         <div class="panel-title ">
-                            <h6><b>EXAM CATEGORY LISTING RESULTS</b></h6> 
+                            <h6><b>EXAM CATEGORY LISTINGS</b></h6> 
                         </div>
                     </div>              
                 </div>
@@ -32,60 +32,72 @@
 
             <div class="content-box-large">
                 <div class="panel-body">
-                    <?php
-                    $dbc = mysqli_connect('localhost', 'root', '', 'test');
-                    $user_id = $_SESSION['user_id'] ;
-                    $query = "SELECT exams. exam_name, performance. score, performance. user_id, people. first_name, people. other_names, category. category_name, subjects. subject_name FROM performance INNER JOIN exams ON exams. exam_id = performance. exam_id INNER JOIN people ON performance. user_id = people. user_id INNER JOIN category ON category. category_id = exams. category_id INNER JOIN subjects ON exams. subject_id = subjects. subject_id WHERE performance. user_id = '$user_id'";
-                    $data = mysqli_query($dbc, $query)
-                    or die(mysqli_error());
+                   <?php
 
-                    echo '<h6><table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                     // Retrieve the subject data from MySQL
+                      $dbc = mysqli_connect('localhost', 'root', '', 'test');
+                      $user_id = $_SESSION['user_id'];
+                      $query = "SELECT category. category_name, category. category_id, category. end_date, category. grade_level, category. category_status, exam_register. user_id FROM `category` INNER JOIN exam_register ON category. category_id = exam_register. category_id WHERE exam_register. user_id = '$user_id'";
+                      
+                      $data = mysqli_query($dbc, $query)
+                      or die(mysqli_error());
+
+                      // Loop through the array of user data, formatting it as HTML 
+                                echo '<h6><table width="100%" class="table table-striped table-bordered table-hover" id="dtexample">
                                 <thead>
                                     <tr>
                                         <th>Exam Category Name</th>
-                                        <th>Name</th>
-                                        <th>Exam Paper Name</th>
-                                        <th>Subject</th>
-                                        <th>Score</th>
-                                    
+                                        <th>End Date</th>
+                                        <th>Grade Level</th>
+                                        <th>Action</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    ';
-                                    $final_score = 0;
-                                  while ($row = mysqli_fetch_array($data)) 
-                                    {
-                                    echo'<tr class="odd gradeX">   
-                                        <td>' . $row['category_name'] . '</td>
-                                        <td>' . $row['first_name'] . ' ' . $row['other_names'] . '</td>
-                                        <td>' . $row['exam_name'] . '</td>
-                                        <td>' . $row['subject_name'] . '</td>
-                                        <td>' . $row['score'] . '</td>
-                                         </tr>';
-                                        $final_score += $row['score'];
-                                    }
-                                    
-                                    echo'<tr class="odd gradeX">   
-                                        <td>TOTAL</td>
-                                        <td><a href="pdf/textwrapping.php?user_id=' . $user_id .'">PRINT</a></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>';echo $final_score; echo'</td>
-                                        <td></td> </tr>
-                                        
-                                                                     
-                                </tbody>
-                            </table>
-                        </h6>';
-                      ?>
+                                <tbody>';
+                     while ($row = mysqli_fetch_array($data)) 
+                     { 
+                      // Display the subject information
+                      
+                      echo '<tr class="odd gradeX"><td>' . $row['category_name'] . '</td>';
+                      echo '<td>' . $row['end_date'] . '</td>';
+                      echo '<td>' . $row['grade_level'] . '</td>';                    
+                      echo '<td class="center"><a href="results_pupil.php?category_name=' . $row['category_name'] . '&amp;category_id=' . $row['category_id'] . '"><b class="text-success">VIEW RESULTS</b><b>&emsp;</b></a><a href="pdf/textwrapping.php?user_id=' . $user_id .'" style="font-size: 12px;"><b class="text-success"><i class="glyphicon glyphicon-print"></b></a></td>';
 
-                                                   
-            </div>             
+
+
+
+                      $cat = $row['category_status']; 
+
+                      
+                      if ($cat == 1) 
+                      {
+                          echo '<td class=""><p class="text-success"><i class="glyphicon glyphicon-ok"></i></p></td></tr>';
+                          
+                          
+                      }
+                      else
+                      {
+                          echo '<td class=""><p class="text-warning"><i class="glyphicon glyphicon-lock"></i></p></td>';
+                      }
+  
+                     }
+                      echo '</thead> </table>';
+
+                      mysqli_close($dbc);
+                  ?>                 
+            </div>              
           </div>
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript">     
+    $(document).ready(function () 
+    {
+    $('#dtexample').DataTable();
+    } 
+    );
+    </script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
